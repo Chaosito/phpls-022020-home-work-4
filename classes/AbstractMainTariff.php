@@ -2,6 +2,8 @@
 
 abstract class AbstractMainTariff implements TariffInterface
 {
+    use GpsTrait;
+
     protected $pricePerKilometer, $pricePerMinute, $driverAge;
     protected $minimalAge = DRIVER_AGE_MINIMAL, $maximalAge = DRIVER_AGE_MAXIMAL;
     protected $minimalAgeForNovice = DRIVER_IS_NOVICE_FROM_AGE, $maximalAgeForNovice = DRIVER_IS_NOVICE_TO_AGE;
@@ -27,6 +29,7 @@ abstract class AbstractMainTariff implements TariffInterface
         }
 
         // Базовое определение свойств подходящих под все тарифы, если будет нужно переопределим
+        $this->gpsActivated = $useGps;
         $this->driverAge = $driverAge;
         $this->currentDistanceKm = $distanceKm;
         $this->currentDurationMinutes = $durationMinutes;

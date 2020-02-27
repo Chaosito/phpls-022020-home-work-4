@@ -10,13 +10,12 @@
 
 class TariffDaily extends AbstractMainTariff
 {
-    use GpsTrait, AdditionalDriverTrait;
+    use AdditionalDriverTrait;
 
     public function __construct($distanceKm, $durationDays, $driverAge, $useGps = false, $useAdditionalDriver = false)
     {
         $this->pricePerKilometer = TARIFF_DAILY_PRICE_PER_KM;
         $this->pricePerMinute = TARIFF_DAILY_PRICE_PER_DAY / MINUTES_IN_DAY;   // 200 Рублей за час
-        $this->gpsActivated = $useGps;
         $this->additionalDriverExists = $useAdditionalDriver;
         parent::__construct($distanceKm, $durationDays * MINUTES_IN_DAY, $driverAge, $useGps, $useAdditionalDriver);
     }

@@ -9,13 +9,12 @@
 
 class TariffHourly extends AbstractMainTariff
 {
-    use GpsTrait, AdditionalDriverTrait;
+    use AdditionalDriverTrait;
 
     public function __construct($distanceKm, $durationHours, $driverAge, $useGps = false, $useAdditionalDriver = false)
     {
         $this->pricePerKilometer = TARIFF_HOURLY_PRICE_PER_KM;
         $this->pricePerMinute = TARIFF_HOURLY_PRICE_PER_HOUR / MINUTES_IN_HOUR;   // 200 Рублей за час
-        $this->gpsActivated = $useGps;
         $this->additionalDriverExists = $useAdditionalDriver;
         parent::__construct($distanceKm, $durationHours * MINUTES_IN_HOUR, $driverAge, $useGps, $useAdditionalDriver);
     }
